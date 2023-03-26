@@ -33,3 +33,18 @@ class Notebook:
 
     def new(self, new_note: dict):
         self.note_book.append(new_note)
+
+    def delete(self, index_note_for_delete: int):
+        if index_note_for_delete in range(len(self.note_book)):
+            for serial_number in range(len(self.note_book)):
+                if serial_number == index_note_for_delete:
+                    del self.note_book[serial_number]
+        else:
+            return False
+
+    def search(self, find: str):
+        result = []
+        for note in self.note_book:
+            if find in note['data_of_create_or_change'][:10]:
+                result.append(note)
+        return result
