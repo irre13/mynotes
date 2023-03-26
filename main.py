@@ -1,3 +1,3 @@
-import note.controller as controller
+import controller as controller
 
 controller.start()
