@@ -18,11 +18,32 @@ def start():
             case 2:
                 view.show_notes(nb.get())
             case 3:
-                pass
+                view.show_notes(nb.get())
+                id_note_for_del = view.select_del_note()
+                index_note_for_del = None
+                try:
+                    for j in range(len(nb.note_book)):
+                        if nb.note_book[j]['id'] == id_note_for_del:
+                            index_note_for_del = j
+                    confirm = view.del_confirm(nb.note_book[index_note_for_del]['header'])
+                    if confirm:
+                        nb.delete(index_note_for_del)
+                        view.view_changes()
+                        nb.save()
+                    else:
+                        view.undo_changes()
+
+                except TypeError:
+                    view.input_error()
             case 4:
                 pass
             case 5:
-                pass
+                find = view.find_note()
+                result = nb.search(find)
+                if result:
+                    view.show_notes(result)
+                else:
+                    view.search_error()
             case 6:
                 view.exit_prog()
             case _:
