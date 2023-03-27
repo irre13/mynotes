@@ -36,7 +36,19 @@ def start():
                 except TypeError:
                     view.input_error()
             case 4:
-                pass
+                view.show_notes(nb.get())
+                id_note_for_change = view.select_change_note()
+                index_note_for_change = None
+                try:
+                    for i in range(len(nb.note_book)):
+                        if nb.note_book[i]['id'] == id_note_for_change:
+                            index_note_for_change = i
+                    note_change = view.modification_note(nb.note_book[index_note_for_change])
+                    nb.change(index_note_for_change, note_change)
+                    nb.save()
+                    view.show_change_note(nb.note_book[index_note_for_change])
+                except TypeError:
+                    view.input_error()
             case 5:
                 find = view.find_note()
                 result = nb.search(find)

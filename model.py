@@ -48,3 +48,14 @@ class Notebook:
             if find in note['data_of_create_or_change'][:10]:
                 result.append(note)
         return result
+
+    def get(self):
+        return self.note_book
+
+    def change(self, id_note_for_change: int, note_change: dict):
+        date_note = datetime.datetime.now().strftime("%d.%m.%Y : %H.%M.%S")
+        self.note_book[id_note_for_change]['header'] = note_change['header'] if note_change['header'] != '' else \
+            self.note_book[id_note_for_change]['header']
+        self.note_book[id_note_for_change]['content'] = note_change['content'] if note_change['content'] != "" else \
+            self.note_book[id_note_for_change]['content']
+        self.note_book[id_note_for_change]['data_of_create_or_change'] = date_note

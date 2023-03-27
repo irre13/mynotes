@@ -64,6 +64,28 @@ def del_confirm(header: str):
         return True
     else:
         return False
+        
+
+def select_change_note() -> int:
+    while True:
+        try:
+            id_note_for_change = int(input('\nВыберите id заметки, которую хотите изменить: '))
+            return id_note_for_change
+        except ValueError:
+            print('\nЧислом, пожалуйста. Попробуйте еще раз. ')
+
+
+def modification_note(note_for_change: dict):
+    print('Введите новые данные. При нажатии на Enter без ввода новых данных удаляются имеющиеся данные.')
+    note_for_change['header'] = input('Новый заголовок: ')
+    note_for_change['content'] = input('Новое содержание: ')
+    return note_for_change
+
+
+def show_change_note(note: dict):
+    print('\nИзмененная заметка:')
+    print('ID: ' + str(note['id']) + '\n' + 'Заголовок: ' + note['header'] + '\n' + 'Содержание: ' +
+          note['content'] + '\n' + 'Дата создания/изменения: ' + note['data_of_create_or_change'])
 
 
 def view_changes():
